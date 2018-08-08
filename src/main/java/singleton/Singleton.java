@@ -10,30 +10,47 @@ public class Singleton {
      */
     private static Singleton singleton = new Singleton();
 
-    //构造方法私有
+    /**
+     *  构造方法私有
+     */
     private Singleton() {
 
     }
 
-    private static Singleton advancedSingleton = null;
+    /**
+     * 懒汉模式 jdk5 之后版本采用volatile是安全
+     */
+    private volatile static Singleton lazySingleton = null;
 
     /**
-     * 懒汉版本
+     * 懒汉版本 线程安全
      * @return
      */
-    public static Singleton createSingletonLazy() {
-        if(null == advancedSingleton) {
+    public static Singleton createSingletonLazyByDoudleNullCheck() {
+        if(null == lazySingleton) {
             synchronized (Singleton.class) {
-                if(null == advancedSingleton) {
-                    advancedSingleton = new Singleton();
+                if(null == lazySingleton) {
+                    lazySingleton = new Singleton();
                 }
             }
         }
-        return advancedSingleton;
+        return lazySingleton;
+    }
+
+    private static class SingleHolder {
+        private static Singleton singleton = new Singleton();
     }
 
     /**
-     * 饿汉版本
+     * 懒汉版本 线程安全 内部类方式
+     * @return
+     */
+    public static Singleton createSingletonLazyByInnerStaticClass() {
+        return SingleHolder.singleton;
+    }
+
+    /**
+     * 饿汉版本 线程安全
      */
     public static Singleton createSingletonUrge() {
         return singleton;
