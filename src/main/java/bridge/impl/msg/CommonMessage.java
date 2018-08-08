@@ -1,4 +1,4 @@
-package bridge.impl;
+package bridge.impl.msg;
 
 import bridge.interfaces.AbstractMessage;
 import bridge.interfaces.IMessgaeOperation;

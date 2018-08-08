@@ -1,4 +1,4 @@
-package bridge.impl;
+package bridge.impl.msg;
 
 import bridge.interfaces.AbstractMessage;
 import bridge.interfaces.IMessgaeOperation;
@@ -19,5 +19,9 @@ public class UrgencyMessage extends AbstractMessage {
     public void sendMessage(String msg, String toUser) {
         msg = URGENCY_WORDS + msg;
         super.sendMessage(msg, toUser);
+    }
+
+    public Object watch(String messageId) {
+        return null;
     }
 }
